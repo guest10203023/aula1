@@ -1,1 +1,65 @@
-<title>ihucvkgklgh</title>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroÉco - O Equilíbrio Sustentável | Projeto Agrinho</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">AGRO<span>ÉCO</span></div>
+        <p>Projeto Agrinho: Conectando Tecnologia, Produção e Planeta</p>
+    </header>
+
+    <main class="container">
+        <section class="dashboard">
+            <h2>Painel de Equilíbrio da Fazenda</h2>
+            <div class="metrics">
+                <div class="card" id="card-prod">
+                    <h3>Produção Agrícola</h3>
+                    <p id="txt-producao">80%</p>
+                    <div class="bar"><div id="bar-producao" style="width: 80%;"></div></div>
+                </div>
+                <div class="card" id="card-amb">
+                    <h3>Saúde Ambiental</h3>
+                    <p id="txt-ambiente">80%</p>
+                    <div class="bar"><div id="bar-ambiente" style="width: 80%;"></div></div>
+                </div>
+                <div class="card" id="card-lucro">
+                    <h3>Retorno Financeiro</h3>
+                    <p id="txt-lucro">R$ 8.000</p>
+                </div>
+            </div>
+            <div id="status-mensagem">Sua fazenda está prosperando em harmonia!</div>
+        </section>
+
+        <section class="decisions">
+            <h2>Central de Decisões Inovadoras</h2>
+            <p>Escolha as tecnologias e manejos para aplicar na sua lavoura:</p>
+            
+            <div class="grid-botoes">
+                <button class="btn-tech" onclick="aplicarTecnologia('drone', this)">
+                    🛸 Implementar Drones de Pulverização de Precisão
+                </button>
+                <button class="btn-tech" onclick="aplicarTecnologia('biologico', this)">
+                    🐛 Adotar Manejo Integrado de Pragas (Biológico)
+                </button>
+                <button class="btn-tech" onclick="aplicarTecnologia('sensores', this)">
+                    💧 Instalar Sensores de Umidade de Solo IoT
+                </button>
+                <button class="btn-tech" onclick="aplicarTecnologia('desmate', this)">
+                    🚜 Expandir área de plantio sobre a Reserva Legal
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 AgroÉco - Inovação para o Projeto Agrinho.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
