@@ -3,109 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AgroSmart 2026</title>
+<title>Agro Forte e Sustentável</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="light">
 
-<header>AgroSmart 2026</header>
+<body>
+
+<header>
+
+<h1>🌱 Agro Forte e Sustentável</h1>
 
 <nav>
-    <a href="#" onclick="showTab('dashboard')">Dashboard</a>
-    <a href="#" onclick="showTab('cameras')">Câmeras</a>
-    <a href="#" onclick="showTab('maquinas')">Máquinas</a>
-    <a href="#" onclick="showTab('inovacoes')">Inovações</a>
-    <a href="#" onclick="showTab('noticias')">Notícias</a>
-    <a href="#" onclick="showTab('configuracoes')">Configurações</a>
+<a href="#inicio">Início</a>
+<a href="#tecnologia">Tecnologia</a>
+<a href="#sustentabilidade">Sustentabilidade</a>
+<a href="#dados">Dados</a>
+<a href="#login">Login</a>
 </nav>
 
-<main>
-<section id="login-section">
-    <h2>Login AgroSmart</h2>
-    <input type="email" placeholder="Email"><br>
-    <input type="password" placeholder="Senha"><br>
-    <button onclick="login()">Entrar</button><br>
-    <button onclick="loginGoogle()">Login com Google</button>
+</header>
+
+<section id="inicio" class="hero">
+
+<div>
+<h2>O Futuro da Agricultura é Digital</h2>
+
+<p>
+A tecnologia transforma o campo através da agricultura de precisão,
+drones, inteligência artificial e práticas sustentáveis.
+</p>
+
+<button onclick="mostrarMensagem()">
+Saiba Mais
+</button>
+
+</div>
+
 </section>
 
-<section id="dashboard" class="tab-content">
-    <h2>Dashboard</h2>
-    <div class="card">
-        <h3>Status da Fazenda</h3>
-        <p>Máquinas online: 5</p>
-        <p>Área irrigada: 120 hectares</p>
-        <p>Temperatura atual: 28°C</p>
-    </div>
-    <div class="card">
-        <h3>Resumo de Produção</h3>
-        <p>Milho: 500 toneladas</p>
-        <p>Soja: 350 toneladas</p>
-    </div>
+<section id="tecnologia">
+
+<h2 class="titulo">Tecnologias no Agro</h2>
+
+<div class="cards">
+
+<div class="card">
+<i class="fas fa-drone"></i>
+<h3>Drones</h3>
+<p>Monitoramento aéreo das plantações.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-robot"></i>
+<h3>Inteligência Artificial</h3>
+<p>Análise de produtividade e previsão climática.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-satellite"></i>
+<h3>Sensores</h3>
+<p>Controle de irrigação e solo em tempo real.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-tractor"></i>
+<h3>Máquinas Inteligentes</h3>
+<p>Maior eficiência na produção agrícola.</p>
+</div>
+
+</div>
+
 </section>
 
-<section id="cameras" class="tab-content">
-    <h2>Câmeras da Fazenda</h2>
-    <div class="card">
-        <p>Câmera 1: Vista do silo</p>
-        <video width="100%" controls>
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="card">
-        <p>Câmera 2: Estábulo</p>
-        <video width="100%" controls>
-            <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-        </video>
-    </div>
+<section id="sustentabilidade">
+
+<h2 class="titulo">Agro Sustentável</h2>
+
+<div class="cards">
+
+<div class="card verde">
+<h3>🌳 Preservação Ambiental</h3>
+<p>Produção com respeito à natureza.</p>
+</div>
+
+<div class="card verde">
+<h3>💧 Economia de Água</h3>
+<p>Irrigação inteligente reduz desperdícios.</p>
+</div>
+
+<div class="card verde">
+<h3>♻ Energia Renovável</h3>
+<p>Uso de energia solar e biogás.</p>
+</div>
+
+</div>
+
 </section>
 
-<section id="maquinas" class="tab-content">
-    <h2>Controle de Máquinas</h2>
-    <div class="card">
-        <h3>Trator 1</h3>
-        <button onclick="ligar('Trator 1')">Ligar</button>
-        <button onclick="desligar('Trator 1')">Desligar</button>
-    </div>
-    <div class="card">
-        <h3>Colheitadeira</h3>
-        <button onclick="ligar('Colheitadeira')">Ligar</button>
-        <button onclick="desligar('Colheitadeira')">Desligar</button>
-    </div>
+<section id="dados">
+
+<h2 class="titulo">Cadastro de Ideias Sustentáveis</h2>
+
+<form id="formIdeia">
+
+<input
+type="text"
+id="nomeIdeia"
+placeholder="Digite uma ideia sustentável"
+required>
+
+<button type="submit">
+Salvar
+</button>
+
+</form>
+
+<ul id="listaIdeias"></ul>
+
 </section>
 
-<section id="inovacoes" class="tab-content">
-    <h2>Inovações Agrícolas</h2>
-    <div class="card">
-        <h3>Drone para monitoramento</h3>
-        <p>Drones inteligentes para identificar pragas e áreas secas automaticamente.</p>
-    </div>
-    <div class="card">
-        <h3>Sensores de Solo</h3>
-        <p>Monitora nutrientes e umidade do solo em tempo real.</p>
-    </div>
+<section id="login">
+
+<div class="container-login">
+
+<div class="formulario">
+
+<h2>Login</h2>
+
+<input type="email" id="email" placeholder="Email">
+
+<input type="password" id="senha" placeholder="Senha">
+
+<button onclick="login()">
+Entrar
+</button>
+
+</div>
+
+<div class="formulario">
+
+<h2>Cadastro</h2>
+
+<input type="text" id="novoNome" placeholder="Nome">
+
+<input type="email" id="novoEmail" placeholder="Email">
+
+<input type="password" id="novaSenha" placeholder="Senha">
+
+<button onclick="cadastro()">
+Cadastrar
+</button>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="noticias" class="tab-content">
-    <h2>Notícias do Agro</h2>
-    <div class="news-item">
-        <h4>Nova técnica de irrigação aumenta produtividade</h4>
-        <p>Pesquisadores desenvolveram um sistema inteligente que economiza água e aumenta o rendimento das culturas.</p>
-    </div>
-    <div class="news-item">
-        <h4>Robôs agrícolas começam a ser usados em fazendas brasileiras</h4>
-        <p>Robôs autônomos ajudam no plantio e colheita, reduzindo o esforço humano.</p>
-    </div>
-</section>
+<footer>
 
-<section id="configuracoes" class="tab-content">
-    <h2>Configurações</h2>
-    <button onclick="changeTheme('light')">Modo Claro</button>
-    <button onclick="changeTheme('dark')">Modo Escuro</button>
-    <button onclick="changeTheme('vibrant')">Tema Vibrante</button>
-</section>
+<p>
+Projeto Agrinho 2025 • Agro Forte e Sustentável
+</p>
 
-</main>
+</footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>

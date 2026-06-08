@@ -1,42 +1,186 @@
-/* Reset */
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
-body { background:#f5f5f5; color:#333; transition:0.3s; }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
 
-/* Header */
-header { background:linear-gradient(90deg,#4caf50,#ff9800); padding:20px; color:#fff; text-align:center; font-size:1.8em; font-weight:bold; }
+body{
+background:#f5f5f5;
+}
 
-/* Menu lateral */
-nav { width:220px; background-color:#2e7d32; color:#fff; position:fixed; height:100%; padding-top:20px; }
-nav a { display:block; padding:15px 20px; color:#fff; text-decoration:none; transition:0.3s; }
-nav a:hover { background-color:#1b5e20; }
+header{
+background:#0b6623;
+color:white;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+}
 
-/* Conteúdo */
-main { margin-left:240px; padding:20px; }
-.tab-content { display:none; animation:fadeIn 0.5s; }
-.tab-content.active { display:block; }
-@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+header h1{
+font-size:2rem;
+}
 
-/* Botões */
-button { padding:10px 20px; border:none; background:#ff9800; color:#fff; cursor:pointer; border-radius:5px; margin:5px 0; transition:0.3s; }
-button:hover { background:#fb8c00; }
+nav a{
+color:white;
+text-decoration:none;
+margin:10px;
+font-weight:bold;
+}
 
-/* Cards */
-.card { background:#fff; padding:20px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
+.hero{
+height:90vh;
+background:linear-gradient(rgba(0,0,0,.5),
+rgba(0,0,0,.5)),
+url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:20px;
+}
 
-/* Login */
-#login-section { max-width:400px; margin:50px auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0 6px 10px rgba(0,0,0,0.1); text-align:center; }
-#login-section input { width:80%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc; }
+.hero h2{
+font-size:3rem;
+margin-bottom:20px;
+}
 
-/* Notícias */
-.news-item { background:#e8f5e9; padding:15px; border-radius:8px; margin-bottom:15px; }
+.hero p{
+font-size:1.2rem;
+max-width:700px;
+}
 
-/* Responsivo */
-@media(max-width:768px){ nav{width:100%; height:auto; position:relative;} main{margin-left:0;} }
+button{
+background:#28a745;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+margin-top:15px;
+transition:.3s;
+}
 
-/* Temas */
-body.light{background:#f5f5f5;color:#333;} 
-body.light header{background:linear-gradient(90deg,#4caf50,#ff9800);} 
-body.dark{background:#121212;color:#eee;} 
-body.dark header{background:linear-gradient(90deg,#1b1b1b,#333);} 
-body.vibrant{background:#ffe082;color:#4e342e;} 
-body.vibrant header{background:linear-gradient(90deg,#ff6f00,#ffca28);}
+button:hover{
+background:#1c7c31;
+}
+
+.titulo{
+text-align:center;
+margin:50px 0 30px;
+font-size:2rem;
+color:#0b6623;
+}
+
+.cards{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+width:250px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+transition:.3s;
+text-align:center;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card i{
+font-size:3rem;
+color:#28a745;
+margin-bottom:15px;
+}
+
+.verde{
+background:#dfffe3;
+}
+
+#dados{
+padding:40px;
+text-align:center;
+}
+
+#dados input{
+padding:12px;
+width:300px;
+max-width:90%;
+}
+
+#listaIdeias{
+list-style:none;
+margin-top:20px;
+}
+
+#listaIdeias li{
+background:white;
+padding:10px;
+margin:10px auto;
+width:300px;
+border-radius:8px;
+}
+
+.container-login{
+display:flex;
+justify-content:center;
+gap:30px;
+padding:50px;
+flex-wrap:wrap;
+}
+
+.formulario{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+width:320px;
+}
+
+.formulario input{
+width:100%;
+padding:12px;
+margin:10px 0;
+}
+
+footer{
+background:#0b6623;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:50px;
+}
+
+@media(max-width:768px){
+
+.hero h2{
+font-size:2rem;
+}
+
+header{
+flex-direction:column;
+}
+
+.cards{
+flex-direction:column;
+align-items:center;
+}
+
+.container-login{
+flex-direction:column;
+align-items:center;
+}
+
+}

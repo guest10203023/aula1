@@ -1,67 +1,111 @@
-// Alternar abas
-function showTab(tabId) {
-    document.querySelectorAll('.tab-content').forEach(section => section.classList.remove('active'));
-    const tab = document.getElementById(tabId);
-    if(tab) tab.classList.add('active');
-    document.getElementById('login-section').style.display = 'none';
+function mostrarMensagem(){
+
+alert(
+"A tecnologia e a sustentabilidade são fundamentais para o futuro do agro!"
+);
+
 }
 
-// Login simulado
-function login() {
-    const email = document.querySelector('#login-section input[type="email"]').value;
-    const senha = document.querySelector('#login-section input[type="password"]').value;
+/* Banco de dados LocalStorage */
 
-    if(email && senha) {
-        alert('Login realizado com sucesso!');
-        document.getElementById('login-section').style.display = 'none';
-        showTab('dashboard');
-    } else {
-        alert('Por favor, preencha email e senha.');
-    }
-}
+const form = document.getElementById("formIdeia");
+const lista = document.getElementById("listaIdeias");
 
-function loginGoogle() {
-    alert('Login com Google realizado com sucesso!');
-    document.getElementById('login-section').style.display = 'none';
-    showTab('dashboard');
-}
+let ideias =
+JSON.parse(localStorage.getItem("ideias")) || [];
 
-// Controle de máquinas
-function ligar(nome) {
-    alert(nome + ' ligado!');
-}
+mostrarIdeias();
 
-function desligar(nome) {
-    alert(nome + ' desligado!');
-}
+form.addEventListener("submit", function(e){
 
-// Troca de tema
-function changeTheme(theme) {
-    document.body.className = theme;
-}
+e.preventDefault();
 
-// Função opcional: alternar entre visualização desktop e celular (simulação)
-function toggleMobileView() {
-    const nav = document.querySelector('nav');
-    const main = document.querySelector('main');
-    nav.style.position = nav.style.position === 'fixed' ? 'relative' : 'fixed';
-    main.style.marginLeft = main.style.marginLeft === '240px' ? '0' : '240px';
-}
+const texto =
+document.getElementById("nomeIdeia").value;
 
-// Função opcional: exibir alertas de notícias em tempo real
-function mostrarAlertasNoticias() {
-    const noticias = document.querySelectorAll('.news-item');
-    noticias.forEach((item, index) => {
-        setTimeout(() => {
-            alert('Nova notícia: ' + item.querySelector('h4').innerText);
-        }, index * 5000);
-    });
-}
+ideias.push(texto);
 
-// Inicialização opcional
-document.addEventListener('DOMContentLoaded', () => {
-    // Começa com login visível
-    document.getElementById('login-section').style.display = 'block';
-    // Oculta todas abas
-    document.querySelectorAll('.tab-content').forEach(section => section.classList.remove('active'));
+localStorage.setItem(
+"ideias",
+JSON.stringify(ideias)
+);
+
+mostrarIdeias();
+
+form.reset();
+
 });
+
+function mostrarIdeias(){
+
+lista.innerHTML = "";
+
+ideias.forEach((item)=>{
+
+const li = document.createElement("li");
+
+li.textContent = item;
+
+lista.appendChild(li);
+
+});
+
+}
+
+/* Cadastro */
+
+function cadastro(){
+
+const nome =
+document.getElementById("novoNome").value;
+
+const email =
+document.getElementById("novoEmail").value;
+
+const senha =
+document.getElementById("novaSenha").value;
+
+const usuario = {
+nome,
+email,
+senha
+};
+
+localStorage.setItem(
+"usuario",
+JSON.stringify(usuario)
+);
+
+alert("Cadastro realizado com sucesso!");
+
+}
+
+/* Login */
+
+function login(){
+
+const email =
+document.getElementById("email").value;
+
+const senha =
+document.getElementById("senha").value;
+
+const usuario =
+JSON.parse(localStorage.getItem("usuario"));
+
+if(
+usuario &&
+usuario.email === email &&
+usuario.senha === senha
+){
+alert(
+"Login realizado com sucesso!"
+);
+}
+else{
+alert(
+"Email ou senha incorretos!"
+);
+}
+
+}
