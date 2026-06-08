@@ -1,100 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroTech Manager - Painel Agrinho 2026</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgroSmart 2026</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="light">
 
-    <header id="main-header">
-        <h2>🌱 AgroTech Manager</h2>
-        <div class="controls">
-            <button onclick="toggleTheme()">🎨 Alterar Cor</button>
-            <button onclick="toggleView()">📱 Visão Celular/PC</button>
-        </div>
-    </header>
+<header>AgroSmart 2026</header>
 
-    <div class="container" id="main-container">
-        
-        <div class="tabs">
-            <button class="tab-btn active" onclick="openTab(event, 'login-tab')">🔐 Acesso</button>
-            <button class="tab-btn" onclick="openTab(event, 'inovacao-tab')">💡 A Inovação</button>
-            <button class="tab-btn" onclick="openTab(event, 'Painel-tab')">🚜 Painel de Controle</button>
-        </div>
+<nav>
+    <a href="#" onclick="showTab('dashboard')">Dashboard</a>
+    <a href="#" onclick="showTab('cameras')">Câmeras</a>
+    <a href="#" onclick="showTab('maquinas')">Máquinas</a>
+    <a href="#" onclick="showTab('inovacoes')">Inovações</a>
+    <a href="#" onclick="showTab('noticias')">Notícias</a>
+    <a href="#" onclick="showTab('configuracoes')">Configurações</a>
+</nav>
 
-        <div id="login-tab" class="tab-content active">
-            <h3>Acesso ao Sistema do Produtor</h3>
-            <p style="margin-bottom: 20px; opacity: 0.8;">Insira suas credenciais para gerenciar sua propriedade de forma remota.</p>
-            
-            <div class="form-group">
-                <label for="usuario">Usuário ou CPF:</label>
-                <input type="text" id="usuario" placeholder="ex: produtor_agrinho">
-            </div>
-            
-            <div class="form-group">
-                <label for="senha">Senha de Acesso:</label>
-                <input type="password" id="senha" placeholder="******">
-            </div>
-            
-            <button class="tab-btn" style="background: var(--primary-color); color: white; border-radius: 6px; margin-top: 10px; opacity: 1;" onclick="alert('Login realizado com sucesso! Navegue até a aba Painel de Controle.')">
-                Entrar no Sistema
-            </button>
-        </div>
+<main>
+<section id="login-section">
+    <h2>Login AgroSmart</h2>
+    <input type="email" placeholder="Email"><br>
+    <input type="password" placeholder="Senha"><br>
+    <button onclick="login()">Entrar</button><br>
+    <button onclick="loginGoogle()">Login com Google</button>
+</section>
 
-        <div id="inovacao-tab" class="tab-content">
-            <h3>Conectividade Campo-Cidade: O Futuro da Agricultura</h3>
-            <p style="margin-top: 15px; line-height: 1.6;">
-                Nossa proposta para o <strong>Agrinho 2026</strong> integra a inteligência de dados com o monitoramento prático em tempo real. Através de protocolos IoT (Internet das Coisas), o produtor rural consegue unificar o gerenciamento de maquinários pesados, checagem de perímetros e sistemas hidráulicos em uma interface adaptável para computadores e smartphones.
-            </p>
-            <p style="margin-top: 15px; line-height: 1.6;">
-                A grande inovação consiste na liberdade de integração: o produtor não fica preso a um sistema fechado. Ao inserir o link de transmissão da sua câmera de segurança ou de um mapa de satélite, a nossa plataforma processa e renderiza a informação instantaneamente dentro do ecossistema da fazenda.
-            </p>
-        </div>
-
-        <div id="Painel-tab" class="tab-content">
-            <h3>Gestão Dinâmica de Dispositivos</h3>
-            <p style="margin-bottom: 20px; opacity: 0.8;">Monitore e envie comandos de ignição ou ativação diretamente para o campo.</p>
-            
-            <div class="form-group" style="background: var(--bg-color); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <label for="link-input">🔗 Vincular Link de Transmissão (Câmera, Imagem ou Mapa):</label>
-                <input type="url" id="link-input" placeholder="Cole aqui o link (Ex: https://picsum.photos/400/300 ou um site de mapas)" style="margin-bottom: 10px;">
-                <button onclick="atualizarLink()" style="padding: 10px 15px; background: var(--accent-color); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
-                    Injetar Mídia no Painel
-                </button>
-            </div>
-
-            <div class="grid-dashboard">
-                
-                <div class="card">
-                    <h4>📹 Monitoramento de Perímetro</h4>
-                    <p style="font-size: 13px; margin-bottom: 10px;"><span class="status-indicator status-on"></span> Receptor Ativo</p>
-                    <div class="media-preview" id="camera-container">
-                        <p style="padding: 15px; text-align: center; font-size: 14px; opacity: 0.7;">Aguardando inserção de um link externo...</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h4>🚜 Trator Autônomo ST-1000</h4>
-                    <p style="font-size: 13px; margin-bottom: 20px;"><span class="status-indicator" id="status-trator"></span> Status: <span id="texto-trator">Desconectado</span></p>
-                    <button onclick="alternarTrator()" id="btn-trator" style="padding: 12px; width: 100%; border: none; background: #e0e0e0; color: #333; font-weight: bold; border-radius: 6px; cursor: pointer;">
-                        Dar Partida no Motor
-                    </button>
-                </div>
-
-                <div class="card">
-                    <h4>💦 Sistema de Irrigação (Pivô Central)</h4>
-                    <p style="font-size: 13px; margin-bottom: 20px;"><span class="status-indicator" id="status-agua"></span> Status: <span id="texto-agua">Desligado</span></p>
-                    <button onclick="alternarIrrigacao()" id="btn-agua" style="padding: 12px; width: 100%; border: none; background: #e0e0e0; color: #333; font-weight: bold; border-radius: 6px; cursor: pointer;">
-                        Ligar Aspersores
-                    </button>
-                </div>
-
-            </div>
-        </div>
+<section id="dashboard" class="tab-content">
+    <h2>Dashboard</h2>
+    <div class="card">
+        <h3>Status da Fazenda</h3>
+        <p>Máquinas online: 5</p>
+        <p>Área irrigada: 120 hectares</p>
+        <p>Temperatura atual: 28°C</p>
     </div>
+    <div class="card">
+        <h3>Resumo de Produção</h3>
+        <p>Milho: 500 toneladas</p>
+        <p>Soja: 350 toneladas</p>
+    </div>
+</section>
 
-    <script src="script.js"></script>
+<section id="cameras" class="tab-content">
+    <h2>Câmeras da Fazenda</h2>
+    <div class="card">
+        <p>Câmera 1: Vista do silo</p>
+        <video width="100%" controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="card">
+        <p>Câmera 2: Estábulo</p>
+        <video width="100%" controls>
+            <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+        </video>
+    </div>
+</section>
+
+<section id="maquinas" class="tab-content">
+    <h2>Controle de Máquinas</h2>
+    <div class="card">
+        <h3>Trator 1</h3>
+        <button onclick="ligar('Trator 1')">Ligar</button>
+        <button onclick="desligar('Trator 1')">Desligar</button>
+    </div>
+    <div class="card">
+        <h3>Colheitadeira</h3>
+        <button onclick="ligar('Colheitadeira')">Ligar</button>
+        <button onclick="desligar('Colheitadeira')">Desligar</button>
+    </div>
+</section>
+
+<section id="inovacoes" class="tab-content">
+    <h2>Inovações Agrícolas</h2>
+    <div class="card">
+        <h3>Drone para monitoramento</h3>
+        <p>Drones inteligentes para identificar pragas e áreas secas automaticamente.</p>
+    </div>
+    <div class="card">
+        <h3>Sensores de Solo</h3>
+        <p>Monitora nutrientes e umidade do solo em tempo real.</p>
+    </div>
+</section>
+
+<section id="noticias" class="tab-content">
+    <h2>Notícias do Agro</h2>
+    <div class="news-item">
+        <h4>Nova técnica de irrigação aumenta produtividade</h4>
+        <p>Pesquisadores desenvolveram um sistema inteligente que economiza água e aumenta o rendimento das culturas.</p>
+    </div>
+    <div class="news-item">
+        <h4>Robôs agrícolas começam a ser usados em fazendas brasileiras</h4>
+        <p>Robôs autônomos ajudam no plantio e colheita, reduzindo o esforço humano.</p>
+    </div>
+</section>
+
+<section id="configuracoes" class="tab-content">
+    <h2>Configurações</h2>
+    <button onclick="changeTheme('light')">Modo Claro</button>
+    <button onclick="changeTheme('dark')">Modo Escuro</button>
+    <button onclick="changeTheme('vibrant')">Tema Vibrante</button>
+</section>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>

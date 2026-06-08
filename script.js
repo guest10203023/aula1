@@ -1,100 +1,67 @@
-// Alternar entre as Abas do Site
-function openTab(evt, tabName) {
-    let i, tabcontent, tablinks;
-    
-    // Esconde todos os conteúdos das abas
-    tabcontent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        tabcontent[i].classList.remove("active");
-    }
-    
-    // Remove a classe 'active' de todos os botões
-    tablinks = document.getElementsByClassName("tab-btn");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-    }
-    
-    // Mostra a aba atual e adiciona a classe ativa
-    document.getElementById(tabName).style.display = "block";
-    document.getElementById(tabName).classList.add("active");
-    evt.currentTarget.classList.add("active");
+// Alternar abas
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(section => section.classList.remove('active'));
+    const tab = document.getElementById(tabId);
+    if(tab) tab.classList.add('active');
+    document.getElementById('login-section').style.display = 'none';
 }
 
-// Alternar Tema (Claro / Escuro)
-function toggleTheme() {
-    document.body.classList.toggle("dark-mode");
-}
+// Login simulado
+function login() {
+    const email = document.querySelector('#login-section input[type="email"]').value;
+    const senha = document.querySelector('#login-section input[type="password"]').value;
 
-// Simular Mudança de Tela (PC para Celular)
-function toggleView() {
-    const container = document.getElementById("main-container");
-    const header = document.getElementById("main-header");
-    
-    container.classList.toggle("phone-view");
-    header.classList.toggle("phone-view");
-}
-
-// Capturar link do usuário e injetar na área da câmera
-function atualizarLink() {
-    const url = document.getElementById("link-input").value;
-    const container = document.getElementById("camera-container");
-    
-    if (url.trim() === "") {
-        alert("Por favor, insira um link válido para continuar.");
-        return;
-    }
-
-    // Identifica se é um link de imagem direta ou um site/dashboard externo
-    if (url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-        container.innerHTML = `<img src="${url}" alt="Monitoramento Agrícola">`;
+    if(email && senha) {
+        alert('Login realizado com sucesso!');
+        document.getElementById('login-section').style.display = 'none';
+        showTab('dashboard');
     } else {
-        container.innerHTML = `<iframe src="${url}" title="Painel de Dados Integrado"></iframe>`;
+        alert('Por favor, preencha email e senha.');
     }
 }
 
-// Controle do Trator Autônomo
-let tratorLigado = false;
-function alternarTrator() {
-    tratorLigado = !tratorLigado;
-    const indicador = document.getElementById("status-trator");
-    const texto = document.getElementById("texto-trator");
-    const btn = document.getElementById("btn-trator");
-
-    if (tratorLigado) {
-        indicador.classList.add("status-on");
-        texto.innerText = "Motor Ligado - Rota traçada via GPS";
-        btn.innerText = "Desligar Motor";
-        btn.style.background = "#d32f2f";
-        btn.style.color = "white";
-    } else {
-        indicador.classList.remove("status-on");
-        texto.innerText = "Desconectado";
-        btn.innerText = "Ligar Motor do Veículo";
-        btn.style.background = "#e0e0e0";
-        btn.style.color = "#333";
-    }
+function loginGoogle() {
+    alert('Login com Google realizado com sucesso!');
+    document.getElementById('login-section').style.display = 'none';
+    showTab('dashboard');
 }
 
-// Controle do Sistema de Irrigação
-let irrigacaoLigada = false;
-function alternarIrrigacao() {
-    irrigacaoLigada = !irrigacaoLigada;
-    const indicador = document.getElementById("status-agua");
-    const texto = document.getElementById("texto-agua");
-    const btn = document.getElementById("btn-agua");
-
-    if (irrigacaoLigada) {
-        indicador.classList.add("status-on");
-        texto.innerText = "Aspergindo - Fluxo Inteligente Ativo";
-        btn.innerText = "Interromper Aspersores";
-        btn.style.background = "#d32f2f";
-        btn.style.color = "white";
-    } else {
-        indicador.classList.remove("status-on");
-        texto.innerText = "Desligado";
-        btn.innerText = "Ativar Aspersores";
-        btn.style.background = "#e0e0e0";
-        btn.style.color = "#333";
-    }
+// Controle de máquinas
+function ligar(nome) {
+    alert(nome + ' ligado!');
 }
+
+function desligar(nome) {
+    alert(nome + ' desligado!');
+}
+
+// Troca de tema
+function changeTheme(theme) {
+    document.body.className = theme;
+}
+
+// Função opcional: alternar entre visualização desktop e celular (simulação)
+function toggleMobileView() {
+    const nav = document.querySelector('nav');
+    const main = document.querySelector('main');
+    nav.style.position = nav.style.position === 'fixed' ? 'relative' : 'fixed';
+    main.style.marginLeft = main.style.marginLeft === '240px' ? '0' : '240px';
+}
+
+// Função opcional: exibir alertas de notícias em tempo real
+function mostrarAlertasNoticias() {
+    const noticias = document.querySelectorAll('.news-item');
+    noticias.forEach((item, index) => {
+        setTimeout(() => {
+            alert('Nova notícia: ' + item.querySelector('h4').innerText);
+        }, index * 5000);
+    });
+}
+
+// Inicialização opcional
+document.addEventListener('DOMContentLoaded', () => {
+    // Começa com login visível
+    document.getElementById('login-section').style.display = 'block';
+    // Oculta todas abas
+    document.querySelectorAll('.tab-content').forEach(section => section.classList.remove('active'));
+});
