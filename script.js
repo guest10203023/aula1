@@ -1,65 +1,100 @@
-// Atributos iniciais da Fazenda
-let producao = 60;
-let ambiente = 60;
-let lucro = 5000;
-
-function atualizarTela() {
-    // Atualiza os textos
-    document.getElementById('txt-producao').innerText = producao + "%";
-    document.getElementById('txt-ambiente').innerText = ambiente + "%";
-    document.getElementById('txt-lucro').innerText = "R$ " + lucro.toLocaleString('pt-BR');
-
-    // Atualiza as barras visuais
-    document.getElementById('bar-producao').style.width = producao + "%";
-    document.getElementById('bar-ambiente').style.width = ambiente + "%";
-
-    // Lógica do técnico ambiental: validação do equilíbrio
-    let mensagem = document.getElementById('status-mensagem');
+// Alternar entre as Abas do Site
+function openTab(evt, tabName) {
+    let i, tabcontent, tablinks;
     
-    if (ambiente >= 75 && producao >= 75) {
-        mensagem.innerText = "🏆 Excelente! Você atingiu o ápice do Agro Sustentável!";
-        mensagem.style.color = "#10b981"; // Verde sucesso
-    } else if (ambiente < 40) {
-        mensagem.innerText = "⚠️ Alerta Ecológico! Multas ambientais eminentes e esgotamento do solo!";
-        mensagem.style.color = "#ef4444"; // Vermelho alerta
-    } else if (producao < 40) {
-        mensagem.innerText = "📉 Alerta Financeiro! A produção está muito baixa para sustentar a propriedade.";
-        mensagem.style.color = "#f59e0b"; // Laranja
+    // Esconde todos os conteúdos das abas
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        tabcontent[i].classList.remove("active");
+    }
+    
+    // Remove a classe 'active' de todos os botões
+    tablinks = document.getElementsByClassName("tab-btn");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+    
+    // Mostra a aba atual e adiciona a classe ativa
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+
+// Alternar Tema (Claro / Escuro)
+function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+}
+
+// Simular Mudança de Tela (PC para Celular)
+function toggleView() {
+    const container = document.getElementById("main-container");
+    const header = document.getElementById("main-header");
+    
+    container.classList.toggle("phone-view");
+    header.classList.toggle("phone-view");
+}
+
+// Capturar link do usuário e injetar na área da câmera
+function atualizarLink() {
+    const url = document.getElementById("link-input").value;
+    const container = document.getElementById("camera-container");
+    
+    if (url.trim() === "") {
+        alert("Por favor, insira um link válido para continuar.");
+        return;
+    }
+
+    // Identifica se é um link de imagem direta ou um site/dashboard externo
+    if (url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+        container.innerHTML = `<img src="${url}" alt="Monitoramento Agrícola">`;
     } else {
-        mensagem.innerText = "Sua fazenda está operando. Busque otimizar os recursos!";
-        mensagem.style.color = "#3b82f6";
+        container.innerHTML = `<iframe src="${url}" title="Painel de Dados Integrado"></iframe>`;
     }
 }
 
-function aplicarTecnologia(tipo, botao) {
-    // Desativa o botão para não clicar duas vezes na mesma tecnologia
-    botao.classList.add('active');
+// Controle do Trator Autônomo
+let tratorLigado = false;
+function alternarTrator() {
+    tratorLigado = !tratorLigado;
+    const indicador = document.getElementById("status-trator");
+    const texto = document.getElementById("texto-trator");
+    const btn = document.getElementById("btn-trator");
 
-    // Modificações baseadas em critérios reais de engenharia agronômica
-    if (tipo === 'drone') {
-        producao += 15;
-        ambiente += 5; // Reduz desperdício de defensivos químicos
-        lucro += 2000;
-    } else if (tipo === 'biologico') {
-        producao += 5;
-        ambiente += 20; // Preserva polinizadores e fauna do solo
-        lucro += 1500;
-    } else if (tipo === 'sensores') {
-        producao += 10;
-        ambiente += 15; // Economia brutal de água e energia
-        lucro += 1000;
-    } else if (tipo === 'desmate') {
-        producao += 25;
-        ambiente -= 35; // Destruição de biodiversidade e perda de serviços ecossistêmicos
-        lucro -= 3000; // Simula perda por multas e erosão a longo prazo
+    if (tratorLigado) {
+        indicador.classList.add("status-on");
+        texto.innerText = "Motor Ligado - Rota traçada via GPS";
+        btn.innerText = "Desligar Motor";
+        btn.style.background = "#d32f2f";
+        btn.style.color = "white";
+    } else {
+        indicador.classList.remove("status-on");
+        texto.innerText = "Desconectado";
+        btn.innerText = "Ligar Motor do Veículo";
+        btn.style.background = "#e0e0e0";
+        btn.style.color = "#333";
     }
-
-    // Travas de limites (0 a 100%)
-    producao = Math.min(Math.max(producao, 0), 100);
-    ambiente = Math.min(Math.max(ambiente, 0), 100);
-
-    atualizarTela();
 }
 
-// Inicializa o painel
-atualizarTela();
+// Controle do Sistema de Irrigação
+let irrigacaoLigada = false;
+function alternarIrrigacao() {
+    irrigacaoLigada = !irrigacaoLigada;
+    const indicador = document.getElementById("status-agua");
+    const texto = document.getElementById("texto-agua");
+    const btn = document.getElementById("btn-agua");
+
+    if (irrigacaoLigada) {
+        indicador.classList.add("status-on");
+        texto.innerText = "Aspergindo - Fluxo Inteligente Ativo";
+        btn.innerText = "Interromper Aspersores";
+        btn.style.background = "#d32f2f";
+        btn.style.color = "white";
+    } else {
+        indicador.classList.remove("status-on");
+        texto.innerText = "Desligado";
+        btn.innerText = "Ativar Aspersores";
+        btn.style.background = "#e0e0e0";
+        btn.style.color = "#333";
+    }
+}
